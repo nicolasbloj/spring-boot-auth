@@ -64,3 +64,35 @@ TEST
 
 
 CURL - POSTMAN
+
+
+
+Importante
+
+UsernamePasswordAuthenticationFilter responds to the URL "/login". Therefore, as we extend this class on our JWTAuthenticationFilter implementation, this is the class that gets the request.
+
+Resumen de pasos a probar.
+
+curl http://localhost:8080/tasks
+>> Access Denied
+
+curl -H "Content-Type: application/json" -X POST -d '{
+    "username": "admin",
+    "password": "password"
+}' http://localhost:8080/users/sign-up
+
+>> 
+
+
+curl -i -H "Content-Type: application/json" -X POST -d '{
+    "username": "admin",
+    "password": "password"
+}' http://localhost:8080/login
+
+
+>> Recibimos 
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTUwODcwMzEyNH0.J7krIVneTyDuT4gojhluOL6Zd_z60ityBEDKfT7IdEoREKq78p0CcGTTus1Nr9oPOz_ZQeVmdzsSyEoejUdIOw
+
+
+Ahora ya podemos consultar http://localhost:8080/tasks con Authorization : Bearer ey.........OW	 EN HEADER.
+
